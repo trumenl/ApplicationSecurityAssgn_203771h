@@ -22,6 +22,22 @@
                 return ("no_number");
 
             }
+
+            else if (str.search(/[a-z]/) == -1) {
+                document.getElementById("lbl_suggest").innerHTML = "Password requires at least 1 lowercase letter"
+                document.getElementById("lbl_suggest").style.color = "Red";
+                return ("need_lowercase");
+            }
+            else if (str.search(/[A-Z]/) == -1) {
+                document.getElementById("lbl_suggest").innerHTML = "Password requires at least 1 uppercase letter"
+                document.getElementById("lbl_suggest").style.color = "Red";
+                return ("need_uppercase");
+            }
+            else if (str.search(/[!@#$%&?]/) == -1) {
+                document.getElementById("lbl_suggest").innerHTML = "Password requires at least 1 special charcater"
+                document.getElementById("lbl_suggest").style.color = "Red";
+                return ("need_special");
+            }
            
             document.getElementById("lbl_pwdchecker").innerHTML = "Excellent!";
             document.getElementById("lbl_pwdchecker").style.color = "Green";
