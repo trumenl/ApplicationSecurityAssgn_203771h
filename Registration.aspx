@@ -71,7 +71,7 @@
             <asp:TextBox ID="email_address" runat="server" OnTextChanged="TextBox4_TextChanged" Wrap="False"></asp:TextBox>
             <br />
             <br />
-            Password:&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_password" runat="server" Width="209px" ></asp:TextBox>
+            Password:&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_password" runat="server" type="password" Width="209px" ></asp:TextBox>
             <asp:Label ID="lbl_pwdchecker" runat="server" Text="pwdchecker"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="Button1" runat="server" Text="Check Password" Width="201px" onClick="btn_checkPassword_Click"/>
