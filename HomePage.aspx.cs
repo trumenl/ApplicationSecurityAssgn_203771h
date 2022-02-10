@@ -159,7 +159,7 @@ namespace ApplicationSecurityAssgn_203771h
                 }
             }
 
-
+            password_message.Text = "Your password have been changed.";
 
 
 
@@ -168,6 +168,9 @@ namespace ApplicationSecurityAssgn_203771h
 
         protected void LogoutMe(object sender, EventArgs e)
         {
+
+            Action = "Has logged out successfully";
+            createLog();
             //Clear() removes all variables stored in session and
             //if user try to browse the site, same sessionID which was previously assigned to him will be used.
             Session.Clear();
@@ -176,7 +179,7 @@ namespace ApplicationSecurityAssgn_203771h
             Session.Abandon();
             Session.RemoveAll();
             Action = "Has logged out successfully";
-            //createLog();
+            
 
             Response.Redirect("Login.aspx", false);
 
@@ -198,33 +201,33 @@ namespace ApplicationSecurityAssgn_203771h
 
 
 
-        //protected void createLog()
-       // {
-          //  try
-           // {
-             //   using (SqlConnection con = new SqlConnection(MYDBConnectionString))
-             //   {
-              //      using (SqlCommand cmd = new SqlCommand("INSERT INTO AuditLog VALUES (@ActionLog, @Email, @DateTime)"))
-               //     {
-               //         using (SqlDataAdapter sda = new SqlDataAdapter())
-                //        {
-                //            cmd.CommandType = CommandType.Text;
-                 //           cmd.Parameters.AddWithValue("@Email", userID);
-                 //           cmd.Parameters.AddWithValue("@DateTime", DateTime.Now);
-                 //           cmd.Parameters.AddWithValue("@ActionLog", Action);
-                 //           cmd.Connection = con;
-                  //          con.Open();
-                 //           cmd.ExecuteNonQuery();
-                 //           con.Close();
-                 //       }
-                 //   }
-           //     }
-         //   }
-        //    catch (Exception ex)
-       //     {
-       //         throw new Exception(ex.ToString());
-       //     }
-      //  }
+        protected void createLog()
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(MYDBConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO AuditLog VALUES (@ActionLog, @Email, @DateTime)"))
+                    {
+                        using (SqlDataAdapter sda = new SqlDataAdapter())
+                        {
+                            cmd.CommandType = CommandType.Text;
+                            cmd.Parameters.AddWithValue("@Email", userID);
+                            cmd.Parameters.AddWithValue("@DateTime", DateTime.Now);
+                            cmd.Parameters.AddWithValue("@ActionLog", Action);
+                            cmd.Connection = con;
+                           con.Open();
+                            cmd.ExecuteNonQuery();
+                           con.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+          }
+        }
 
 
 

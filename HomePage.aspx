@@ -55,6 +55,10 @@
                 <asp:TextBox ID="ChangePasswd" runat="server"></asp:TextBox>
 &nbsp;<asp:Button ID="ChangePasswordButton" runat="server" OnClick="ChangePassword" Text="Change Password" />
                 <br />
+                <br />
+                <br />
+
+                <asp:Label ID="password_message" runat="server"></asp:Label>
 
                 <p/>
 

@@ -35,7 +35,7 @@ namespace ApplicationSecurityAssgn_203771h
         protected void btn_Submit_Click(object sender, EventArgs e)
         {
             //string pwd = get value from your Textbox
-            string pwd = tb_password.Text.ToString().Trim(); ;
+            string pwd = HttpUtility.HtmlEncode(tb_password.Text.ToString().Trim()); ;
             //Generate random "salt"
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
             byte[] saltByte = new byte[8];
@@ -68,15 +68,14 @@ namespace ApplicationSecurityAssgn_203771h
                         using (SqlDataAdapter sda = new SqlDataAdapter())
                         {
                             cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.AddWithValue("@Fname", first_name.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Lname", last_name.Text.Trim());
-                            //cmd.Parameters.AddWithValue("@Nric", encryptData(tb_nric.Text.Trim()));
-                            cmd.Parameters.AddWithValue("@CC_Number", Convert.ToBase64String(encryptData(cc_number.Text.Trim())));
-                            cmd.Parameters.AddWithValue("@CC_Date", Convert.ToBase64String(encryptData(cc_date.Text.Trim())));
-                            cmd.Parameters.AddWithValue("@CC_CVV", Convert.ToBase64String(encryptData(cc_cvv.Text.Trim())));
-                            cmd.Parameters.AddWithValue("@Email", email_address.Text.Trim());
-                            cmd.Parameters.AddWithValue("@DateOfBirth", date_of_birth.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Photo", photo.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Fname", HttpUtility.HtmlEncode(first_name.Text.Trim()));
+                            cmd.Parameters.AddWithValue("@Lname", HttpUtility.HtmlEncode(last_name.Text.Trim()));
+                            cmd.Parameters.AddWithValue("@CC_Number", HttpUtility.HtmlEncode(Convert.ToBase64String(encryptData(cc_number.Text.Trim()))));
+                            cmd.Parameters.AddWithValue("@CC_Date", HttpUtility.HtmlEncode(Convert.ToBase64String(encryptData(cc_date.Text.Trim()))));
+                            cmd.Parameters.AddWithValue("@CC_CVV", HttpUtility.HtmlEncode(Convert.ToBase64String(encryptData(cc_cvv.Text.Trim()))));
+                            cmd.Parameters.AddWithValue("@Email", HttpUtility.HtmlEncode(email_address.Text.Trim()));
+                            cmd.Parameters.AddWithValue("@DateOfBirth", HttpUtility.HtmlEncode(date_of_birth.Text.Trim()));
+                            cmd.Parameters.AddWithValue("@Photo", HttpUtility.HtmlEncode(photo.Text.Trim()));
                             cmd.Parameters.AddWithValue("@PasswordHash", finalHash);
                             cmd.Parameters.AddWithValue("@PasswordSalt", salt);
                             cmd.Parameters.AddWithValue("@IV", Convert.ToBase64String(IV));

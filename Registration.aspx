@@ -11,32 +11,29 @@
             var str = document.getElementById('<%=tb_password.ClientID %>').value;
 
             if (str.length < 12) {
-                document.getElementById("lbl_pwdchecker").innerHTML = "Password Length Must be at least 12 Characters";
+                document.getElementById("lbl_pwdchecker").innerHTML = "Password length must be at least 12 Characters";
                 document.getElementById("lbl_pwdchecker").style.color = "Red";
-                return ("Ptoo_short");
+                return ("too short");
             }
-
             else if (str.search(/[0-9]/) == -1) {
-                document.getElementById("lbl_pwdchecker").innerHTML = "Password require at least 1 number";
+                document.getElementById("lbl_pwdchecker").innerHTML = "Password requires at least 1 number";
                 document.getElementById("lbl_pwdchecker").style.color = "Red";
                 return ("no_number");
-
-            }
-
-            else if (str.search(/[a-z]/) == -1) {
-                document.getElementById("lbl_suggest").innerHTML = "Password requires at least 1 lowercase letter"
-                document.getElementById("lbl_suggest").style.color = "Red";
-                return ("need_lowercase");
             }
             else if (str.search(/[A-Z]/) == -1) {
-                document.getElementById("lbl_suggest").innerHTML = "Password requires at least 1 uppercase letter"
-                document.getElementById("lbl_suggest").style.color = "Red";
-                return ("need_uppercase");
+                document.getElementById("lbl_pwdchecker").innerHTML = "Password requires at least 1 upper case character";
+                document.getElementById("lbl_pwdchecker").style.color = "Red";
+                return ("no_uppercase");
             }
-            else if (str.search(/[!@#$%&?]/) == -1) {
-                document.getElementById("lbl_suggest").innerHTML = "Password requires at least 1 special charcater"
-                document.getElementById("lbl_suggest").style.color = "Red";
-                return ("need_special");
+            else if (str.search(/[a-z]/) == -1) {
+                document.getElementById("lbl_pwdchecker").innerHTML = "Password requires at least 1 lower case character";
+                document.getElementById("lbl_pwdchecker").style.color = "Red";
+                return ("no_lowercase");
+            }
+            else if (str.search(/[!@#$%^&*]/) == -1) {
+                document.getElementById("lbl_pwdchecker").innerHTML = "Password requires at least 1 special character";
+                document.getElementById("lbl_pwdchecker").style.color = "Red";
+                return ("no_special");
             }
            
             document.getElementById("lbl_pwdchecker").innerHTML = "Excellent!";
@@ -87,7 +84,7 @@
             <asp:TextBox ID="email_address" runat="server" OnTextChanged="TextBox4_TextChanged" Wrap="False"></asp:TextBox>
             <br />
             <br />
-            Password:&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_password" runat="server" type="password" Width="209px" ></asp:TextBox>
+            Password:&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_password" runat="server"  OnKeyUp="validate()" Width="209px" ></asp:TextBox>
             <asp:Label ID="lbl_pwdchecker" runat="server" Text="pwdchecker"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="Button1" runat="server" Text="Check Password" Width="201px" onClick="btn_checkPassword_Click"/>

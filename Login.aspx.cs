@@ -57,8 +57,8 @@ namespace ApplicationSecurityAssgn_203771h
         {
 
             
-            string userid = tb_userid.Text.ToString().Trim();
-            string pwd = tb_pwd.Text.ToString().Trim();
+            string userid = HttpUtility.HtmlEncode(tb_userid.Text.ToString().Trim());
+            string pwd = HttpUtility.HtmlEncode(tb_pwd.Text.ToString().Trim());
             SHA512Managed hashing = new SHA512Managed();
             string dbHash = getDBHash(userid);
             string dbSalt = getDBSalt(userid);
@@ -82,7 +82,7 @@ namespace ApplicationSecurityAssgn_203771h
 
                         Action = " Has logged in successfully";
                         createLog();
-                        Session["LoggedIn"] = tb_userid.Text.Trim();
+                        Session["LoggedIn"] = HttpUtility.HtmlEncode(tb_userid.Text.Trim());
                             //Response.Redirect("HomePage.aspx", false);
 
                         
@@ -297,7 +297,7 @@ namespace ApplicationSecurityAssgn_203771h
                         using (SqlDataAdapter sda = new SqlDataAdapter())
                         {
                             cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.AddWithValue("@Email", tb_userid.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Email", HttpUtility.HtmlEncode(tb_userid.Text.Trim()));
                             cmd.Parameters.AddWithValue("@DateTime", DateTime.Now);
                             cmd.Parameters.AddWithValue("@ActionLog", Action);
                             cmd.Connection = con;

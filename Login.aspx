@@ -27,7 +27,7 @@
                 
 
                 <p>Email : <asp:TextBox ID="tb_userid" runat="server" Height="25px" Width="137px" /> </p>
-                <p>Password : <asp:TextBox ID="tb_pwd" runat="server" Height="24px" Width="137px" /> </p>
+                <p>Password : <asp:TextBox ID="tb_pwd" runat="server" type="password" Height="24px" Width="137px" /> </p>
                 <asp:Label runat="server" ID="lbl_gScore"></asp:Label>
                 
                 <p><asp:Button ID="btnSubmit" runat="server" Text="Login" OnClick="LoginMe" Height="27px" Width="133px" />
