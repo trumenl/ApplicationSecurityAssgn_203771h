@@ -35,6 +35,7 @@ namespace ApplicationSecurityAssgn_203771h
         protected void btn_Submit_Click(object sender, EventArgs e)
         {
             //string pwd = get value from your Textbox
+            //httptutility.html encode for encoding, prevent xss
             string pwd = HttpUtility.HtmlEncode(tb_password.Text.ToString().Trim()); ;
             //Generate random "salt"
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
@@ -56,7 +57,8 @@ namespace ApplicationSecurityAssgn_203771h
         }
 
 
-
+        //adds all new account details into database
+        //Used parameterized queries to prevent sqli
         protected void createAccount()
         {
             try
@@ -97,7 +99,7 @@ namespace ApplicationSecurityAssgn_203771h
             }
         }
 
-
+        // Use to encrypt credit card details (number, expiry date, cvv)
         protected byte[] encryptData(string data)
         {
             byte[] cipherText = null;
@@ -120,6 +122,7 @@ namespace ApplicationSecurityAssgn_203771h
 
 
 
+        //server side validation
 
         protected void btn_checkPassword_Click(object sender, EventArgs e)
         {

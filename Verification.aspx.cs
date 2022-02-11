@@ -25,6 +25,7 @@ namespace ApplicationSecurityAssgn_203771h
 
         }
 
+        //retrieves verification code from database
         protected string vCodeOTP(string email)
         {
             string otp = null;
@@ -54,6 +55,8 @@ namespace ApplicationSecurityAssgn_203771h
             return otp;
         }
 
+
+        //checks if verification code entered is the same as one in database, if so, pass
         protected void VerifyCode(object sender, EventArgs e)
         {
             if (HttpUtility.HtmlEncode(verification_code.Text.ToString()) == vCodeOTP(Session["LoggedIn"].ToString()))

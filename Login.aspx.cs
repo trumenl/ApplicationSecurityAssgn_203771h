@@ -107,20 +107,24 @@ namespace ApplicationSecurityAssgn_203771h
 
 
 
-                    };
-
-
-                      
-
-
-
-
                     }
+
+
+                    else
+                    {
+                        lblMessage.Text = "Email or password is not valid. Please try again.";
+                        
+                    }
+
+
+
+
+                }
 
                 else
                 {
-                    lblMessage.Text = "Email or password is not valid. Please try again .";
-                    //Response.Redirect("Login.aspx");
+                    lblMessage.Text = "Email or password is not valid. Please try again.";
+                    
                 }
 
 
@@ -151,7 +155,7 @@ namespace ApplicationSecurityAssgn_203771h
 
 
 
-
+        //captcha
         public bool ValidateCaptcha()
         {
             bool result = true;
@@ -188,28 +192,7 @@ namespace ApplicationSecurityAssgn_203771h
 
 
 
-        // Checks username and password (hardcoded for now)
-        //if (tb_userid.Text.Trim().Equals("Trumenlim") && tb_pwd.Text.Trim().Equals("Rebelt7i@123"))
-        //{
-
-
-
-
-
-
-        // Response.Redirect("Homepage.aspx", false);
-        //}
-
-
-
-        // else
-        //{
-        //    lblMessage.Text = "Wrong username or password";
-
-        //}
-        //}
-        //}
-
+        
 
 
 
@@ -285,7 +268,7 @@ namespace ApplicationSecurityAssgn_203771h
 
 
 
-
+        //audit log
         protected void createLog()
         {
             try
@@ -314,7 +297,7 @@ namespace ApplicationSecurityAssgn_203771h
             }
         }
 
-
+        //adds randomly generated otp to user's database
         protected string CreateOTP (string userid, string RandomNumber)
         {
             string otp = null;
@@ -350,6 +333,8 @@ namespace ApplicationSecurityAssgn_203771h
             return otp;
         }
 
+
+        //Using smtp mail server to send out verification code to user's email
         protected string verificationcode(string verifycode)
         {
             string senderAddress = "Trumen <limtrum1@gmail.com>";

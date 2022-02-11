@@ -6,6 +6,7 @@
 <head runat="server">
     <title></title>
 
+    <!-- client side validation -->
     <script type="text/javascript">
         function validate() {
             var str = document.getElementById('<%=tb_password.ClientID %>').value;

@@ -22,11 +22,11 @@ namespace ApplicationSecurityAssgn_203771h
         public string Action = null;
         static string finalHash;
         static string salt;
-        
 
 
 
 
+        // Checks if user is logged in, if they are not, redirect to login page
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["LoggedIn"] != null && Session["AuthToken"] != null && Request.Cookies["AuthToken"] != null)
@@ -60,6 +60,7 @@ namespace ApplicationSecurityAssgn_203771h
         }
 
 
+        // displays user's first name and email
         protected void displayUserProfile(string userid)
         {
             SqlConnection connection = new SqlConnection(MYDBConnectionString);
@@ -105,6 +106,7 @@ namespace ApplicationSecurityAssgn_203771h
         }
 
 
+        //hashes new password entered and updates it in database
         protected void ChangePassword(object sender, EventArgs e)
         {
 
@@ -166,6 +168,7 @@ namespace ApplicationSecurityAssgn_203771h
         }
 
 
+        //Clear session and cookies when logging out
         protected void LogoutMe(object sender, EventArgs e)
         {
 
@@ -200,7 +203,7 @@ namespace ApplicationSecurityAssgn_203771h
 
 
 
-
+        //audit log
         protected void createLog()
         {
             try
